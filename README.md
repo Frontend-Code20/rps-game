@@ -54,3 +54,9 @@ This will start the app at http://localhost:3000 by default.
 This project is licensed under the MIT License
 
 ## Project Preview
+
+![Home](https://github.com/Frontend-Code20/rps-game/blob/main/public/github/home.png)
+![game](https://github.com/Frontend-Code20/rps-game/blob/main/public/github/game.png)
+![round view](https://github.com/Frontend-Code20/rps-game/blob/main/public/github/round.png)
+![round view](https://github.com/Frontend-Code20/rps-game/blob/main/public/github/round1.png)
+![result](https://github.com/Frontend-Code20/rps-game/blob/main/public/github/result.png)
