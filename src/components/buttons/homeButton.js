@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useContext } from "react";
-import { DataContext } from "./dataContext";
+import { DataContext } from "../dataContext";
 
 function HomeButton() {
 

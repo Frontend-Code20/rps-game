@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import ButtonProgress from "./ButtonProgress";
+import ButtonProgress from "./buttons/ButtonProgress";
 import { DataContext } from "./dataContext";
 
 function PlayBox({ playTime, commandFor }) {
@@ -18,7 +18,7 @@ function PlayBox({ playTime, commandFor }) {
                 setResultImage(roundThrows[1].url)
             }
         }else{
-            setResultImage('/assets/question.png')
+            setResultImage('./assets/question.png')
         }
 
     }, [roundThrows, commandFor]);
@@ -26,7 +26,7 @@ function PlayBox({ playTime, commandFor }) {
     return (
         <div className="flex flex-col items-center gap-2">
             <div className="flex flex-col relative w-32 mb-4">
-                <img src={resultImage ? resultImage : "/assets/question.png"} alt="player1 commad" id="image1" className="rounded-lg"></img>
+                <img src={resultImage ? resultImage : "./assets/question.png"} alt="player1 commad" id="image1" className="rounded-lg"></img>
                 <div className={true === 1 ? "image-shadow" : ""}></div>
                 {playTime !== commandFor && playTime ? <div className="w-full h-full bg-black absolute top-0 opacity-75 rounded-lg"></div> : null}
             </div>

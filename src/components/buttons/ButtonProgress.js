@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useContext } from "react";
-import { DataContext } from "./dataContext";
-import { getRoundResult } from "../helpers/roundResult";
+import { DataContext } from "../dataContext";
+import { getRoundResult } from "../../helpers/roundResult";
+import CircleProgress from "./circleProgress";
 
 function ButtonProgress({ active }) {
 
@@ -10,18 +11,30 @@ function ButtonProgress({ active }) {
     const { setRoundThrows, roundThrows } = useContext(DataContext);
 
     const [index, setIndex] = useState(0);
-    const circumference = 2 * Math.PI * 30;
 
     const buttonRef = useRef(null);
 
+    const endProgress = () => {
+        if (playTime === "Player1") {
+            setPlayTime("Player2");
+        } else {
+            setPlayTime(null);
+        }
+        const PlayerThrow = getRoundResult(index);
+        setRoundThrows((previous) => [...previous, PlayerThrow]);
+        if (active) {
+            setProgress(0);
+        }
+    }
+
+    const startProgress = () => {
+        if (progress < 100) {
+            setProgress((prev) => (prev < 100 ? prev + 1 : 100));
+            console.log("Ok");
+        }
+    }
 
     useEffect(() => {
-        const startProgress = () => {
-            if (progress < 100) {
-                setProgress((prev) => (prev < 100 ? prev + 1 : 100));
-                console.log("Ok");
-            }
-        }
 
         const button = buttonRef.current;
         if (button && active) {
@@ -45,6 +58,7 @@ function ButtonProgress({ active }) {
                     setProgress((prev) => (prev < 100 ? prev + 1 : 100));
                 } else {
                     endProgress();
+                    addKeyDownEvents();
                 }
             } else {
                 return;
@@ -54,27 +68,15 @@ function ButtonProgress({ active }) {
         const endProgressOnKeyDown = (event) => {
             if (event.keyCode === keyCode) {
                 endProgress();
+                addKeyDownEvents();
             }else{
                 return;
             }
         }
 
-        const endProgress = () => {
-            if (playTime === "Player1") {
-                setPlayTime("Player2");
-            } else {
-                setPlayTime(null);
-            }
-            const PlayerThrow = getRoundResult(index);
-            setRoundThrows((previous) => [...previous, PlayerThrow]);
-            addKeyDownEvents();
-            if (active) {
-                setProgress(0);
-            }
-        }
-
+        
         const button = buttonRef.current;
-
+        
         const addKeyDownEvents = () => {
             if (button && active) {
                 button.focus();
@@ -82,7 +84,7 @@ function ButtonProgress({ active }) {
                 button.addEventListener('keyup', endProgressOnKeyDown);
             }
         }
-
+        
         addKeyDownEvents();
         return () => {
             if (button) {
@@ -92,33 +94,9 @@ function ButtonProgress({ active }) {
         };
     }, [progress, active, roundThrows, playTime]);
 
-
     return (
         <button className="outline-none relative" ref={buttonRef}>
-            <svg width={70} height={70} viewBox="0 0 100 100" style={{ transform: 'rotate(-90deg)' }}>
-                {/* Background circle */}
-                <circle
-                    cx="50"
-                    cy="50"
-                    r={30}
-                    stroke={"#e6e6e6"}
-                    strokeWidth={10}
-                    fill="none"
-                />
-                {/* Progress circle */}
-                <circle
-                    cx="50"
-                    cy="50"
-                    r={30}
-                    stroke={"#4db8ff"}
-                    strokeWidth={10}
-                    fill="none"
-                    strokeDasharray={2 * Math.PI * 30}
-                    strokeDashoffset={circumference - (progress / 100) * circumference}
-                    style={{ transition: 'stroke-dashoffset 0.3s ease' }}
-                />
-                <image x={30} y={35} height={35} width={35} href="assets/scissor24.png"></image>
-            </svg>
+            <CircleProgress progress={progress}/>
             {!active ? <div className="absolute top-0 bg-black rounded-full opacity-50 w-full h-full"></div> : null}
         </button>
     )

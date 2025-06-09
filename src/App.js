@@ -1,6 +1,5 @@
 import Game from "./components/game";
 import { DataProvider } from "./components/dataContext";
-import "./App.css";
 
 function App() {
   return (

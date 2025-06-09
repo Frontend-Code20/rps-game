@@ -54,10 +54,10 @@ function PlayGame() {
 
     return (
         <div className="w-full bg-Peony rounded-lg flex flex-col gap-4 pb-8">
-            <audio src={"/audio/win.mp3"} id="winSound" ref={winSoundRef}></audio>
+            <audio src={"./audio/win.mp3"} id="winSound" ref={winSoundRef}></audio>
             <audio src={"/"} id="resultSound"></audio>
             <header className="w-full flex items-center box-border ps-4 bg-Hot-Pink rounded-t-lg rounded-tl-lg py-4 text-white">
-                <img src="assets/back.png" alt="Go to Home" className="cursor-pointer" title="Go to Home" onClick={() => setScreen('home')} />
+                <img src="./assets/back.png" alt="Go to Home" className="cursor-pointer" title="Go to Home" onClick={() => setScreen('home')} />
                 <h1 className="text-3xl text-center w-full">Rock, Paper, Scissors</h1>
             </header>
             <div className="flex justify-between box-border px-2">

@@ -35,9 +35,9 @@ function Home() {
 
     return (
         <div className="flex justify-center items-center flex-col gap-5 w-full bg-Peony rounded-lg pb-20">
-            <audio src="/audio/bgmusic.mp3" autoPlay />
+            <audio src="./audio/bgmusic.mp3" autoPlay />
             <h1 className="text-3xl bg-Hot-Pink w-full rounded-s-lg rounded-e-lg text-center py-4 text-white">Rock, Paper, Scissors</h1>
-            <img src={"/assets/rps.png"} alt="logo" className="w-40 h-40" />
+            <img src={"./assets/rps.png"} alt="logo" className="w-40 h-40" />
             <form action="/" className="flex flex-col gap-2 w-full px-6" ref={formRef}>
                 <InputField placeholder={"Player 1 Name"} name={"player-one"}/>
                 <InputField placeholder={"Player 2 Name"} name={"player-two"} />

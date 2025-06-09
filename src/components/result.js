@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "./dataContext";
-import PlayAgainButton from "./playAgainButton";
-import HomeButton from "./homeButton";
+import PlayAgainButton from "./buttons/playAgainButton";
+import HomeButton from "./buttons/homeButton";
 
 function Result() {
 
@@ -25,10 +25,10 @@ function Result() {
 
     return (
         <div className="bg-Peony flex flex-col text-white rounded-lg justify-center w-full items-center gap-4 pb-10">
-            <audio src="/audio/result.mp3" autoPlay></audio>
-            <audio src="/audio/Clipping.mp3" autoPlay></audio>
+            <audio src="./audio/result.mp3" autoPlay></audio>
+            <audio src="./audio/Clipping.mp3" autoPlay></audio>
             <h1 className="text-3xl bg-Hot-Pink w-full text-center py-3 rounded-t-lg">Congratulation</h1>
-            <img src={firstPlayerScore !== secondPlayerScore ? "/assets/badge.png" : "/assets/draw.png"} alt="icon" className="w-44 h-44 my-5" />
+            <img src={firstPlayerScore !== secondPlayerScore ? "./assets/badge.png" : "./assets/draw.png"} alt="icon" className="w-44 h-44 my-5" />
             <h3 className="w-full h-6 text-center">{winner}</h3>
             <div className="flex gap-4 flex-wrap">
                 <h4>{player1Name + " Score"} = {firstPlayerScore}</h4>
